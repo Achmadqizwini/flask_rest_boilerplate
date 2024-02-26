@@ -1,15 +1,16 @@
-from .. import db
-from enum import Enum
-import uuid
 import datetime
-from ..util.helper import convert_to_local_time, is_valid_email, create_token
-from werkzeug.security import generate_password_hash, check_password_hash
 import logging
+import uuid
+from enum import Enum
+
+from werkzeug.security import check_password_hash, generate_password_hash
+
+from .. import db
+from ..util.helper import convert_to_local_time, create_token, is_valid_email
 
 # Set up logging
 # logging.basicConfig()
 # logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)
-
 
 
 class User(db.Model):
@@ -45,7 +46,6 @@ class User(db.Model):
         db.session.add(self)
         db.session.commit()
 
-
     def get_all_users(self, page, count):
         try:
             offset = (page - 1) * count
@@ -71,14 +71,15 @@ class User(db.Model):
                 role=data.get("role", "user"),
                 status=data.get("status", "active"),
                 created_at=datetime.datetime.utcnow(),
-                updated_at=datetime.datetime.utcnow()
+                updated_at=datetime.datetime.utcnow(),
             )
             new_user.save()
             return new_user.serialize()
         except Exception as e:
             raise e
-        
+
         # please never return this
+
     def serialize_entire_data(self):
         return {
             "id": self.id,
@@ -89,7 +90,7 @@ class User(db.Model):
             "role": self.role,
             "status": self.status,
         }
-    
+
     def user_auth(self, data):
         try:
             user = self.query.filter_by(email=data.get("email")).first()

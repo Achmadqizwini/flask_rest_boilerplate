@@ -2,18 +2,10 @@ import logging
 import sys
 
 from flask import Flask
+
 from app import commands
-from app.extensions import (
-    bcrypt,
-    db,
-    api,
-    debug_toolbar,
-    migrate,
-    # cache
-)
-
+from app.extensions import api, bcrypt, db, debug_toolbar, migrate  # cache
 from app.main.controller.user_controller import ns as user_ns
-
 
 
 def create_app(config_object="app.settings"):

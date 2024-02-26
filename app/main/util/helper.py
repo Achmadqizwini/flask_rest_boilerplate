@@ -1,10 +1,11 @@
-from datetime import datetime, timedelta
-import time
-import email_validator
-from werkzeug.security import generate_password_hash
-import jwt
 import os
+import time
+from datetime import datetime, timedelta
+
+import email_validator
+import jwt
 from dotenv import load_dotenv
+from werkzeug.security import generate_password_hash
 
 load_dotenv()
 

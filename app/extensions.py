@@ -1,12 +1,12 @@
+import pymysql
 from flask_bcrypt import Bcrypt
+from flask_caching import Cache
 from flask_debugtoolbar import DebugToolbarExtension
 from flask_migrate import Migrate
-from flask_sqlalchemy import SQLAlchemy
 from flask_restx import Api, Namespace
-from flask_caching import Cache
-from app.settings import redis_cache_config
+from flask_sqlalchemy import SQLAlchemy
 
-import pymysql
+from app.settings import redis_cache_config
 
 pymysql.install_as_MySQLdb()
 

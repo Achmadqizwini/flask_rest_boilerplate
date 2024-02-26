@@ -1,5 +1,7 @@
 import logging as log
+
 from app.main.model.user import User
+
 from ..util.helper import error_handler
 
 log.basicConfig(level=log.ERROR)
@@ -19,6 +21,7 @@ def register_user(data):
     except Exception as e:
         log.error(f"Error in register_user: {str(e)}")
         return error_handler(e)
+
 
 def get_all_users(page, count):
     try:
@@ -49,7 +52,8 @@ def user_auth(data):
     except Exception as e:
         log.error(f"Login Error: {str(e)}")
         return error_handler(e)
-    
+
+
 def user_auth(data):
     try:
         auth = user_model.user_auth(data)

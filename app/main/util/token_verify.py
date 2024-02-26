@@ -1,9 +1,10 @@
-import jwt
+import logging as log
 import os
+from functools import wraps
+
+import jwt
 from dotenv import load_dotenv
 from flask import request
-from functools import wraps
-import logging as log
 
 log.basicConfig(level=log.ERROR)
 

@@ -27,10 +27,7 @@ DEBUG_TB_INTERCEPT_REDIRECTS = False
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 # Redis settings
-redis_cache_config = {
-    "CACHE_TYPE": "simple",
-    "CACHE_REDIS_URL": None
-}
+redis_cache_config = {"CACHE_TYPE": "simple", "CACHE_REDIS_URL": None}
 
 REDIS_HOST = env.str("REDIS_HOST")
 REDIS_PORT = env.int("REDIS_PORT")
@@ -41,4 +38,6 @@ if REDIS_HOST and REDIS_PORT:
     redis_cache_config["CACHE_REDIS_URL"] = f"redis://{REDIS_HOST}:{REDIS_PORT}/0"
 
 if REDIS_PASSWORD:
-    redis_cache_config["CACHE_REDIS_URL"] = f"redis://:{REDIS_PASSWORD}@{REDIS_HOST}:{REDIS_PORT}/0"
+    redis_cache_config["CACHE_REDIS_URL"] = (
+        f"redis://:{REDIS_PASSWORD}@{REDIS_HOST}:{REDIS_PORT}/0"
+    )

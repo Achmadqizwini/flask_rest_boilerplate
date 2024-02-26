@@ -8,7 +8,6 @@ HERE = os.path.abspath(os.path.dirname(__file__))
 PROJECT_ROOT = os.path.join(HERE, os.pardir)
 TEST_PATH = os.path.join(PROJECT_ROOT, "tests")
 
-
 @click.command()
 @click.option(
     "-c/-C",
@@ -23,7 +22,7 @@ def test(coverage):
 
     args = [TEST_PATH, "--verbose"]
     if coverage:
-        args.append("--cov=hidden_gem_backend")
+        args.append("--cov=flask-api-boilerplate")
     rv = pytest.main(args)
     exit(rv)
 
@@ -43,6 +42,7 @@ def test(coverage):
     is_flag=True,
     help="Don't make any changes to files, just confirm they are formatted correctly",
 )
+
 def lint(fix_imports, check):
     """Lint and check code style with black, flake8 and isort."""
     skip = ["node_modules", "requirements", "migrations"]
