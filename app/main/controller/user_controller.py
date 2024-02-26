@@ -5,22 +5,20 @@ from flask_restx import Resource
 from ..service.user_service import (
     register_user,
     get_all_users,
+    user_auth
 )
 from ...extensions import ns
-# from ..util.token_verify import token_required
+from ..util.token_verify import token_required
 
 user_dto = UserDto()
 _user = user_dto.user
-# _login = user_dto.login
+_login = user_dto.login
 
 @ns.route("/user/signup")
 class UserSignUp(Resource):
     @ns.expect(_user, validate=True)
     def post(self):
         """Register a new user"""
-        print("payload: ")
-        print(ns.payload)
-        print("\n\n================\n\n")
         return register_user(ns.payload)
 
 
@@ -28,10 +26,17 @@ class UserSignUp(Resource):
 class UserList(Resource):
     @ns.param("page", "Page of data you want to retrieve")
     @ns.param("count", "How many items you want to include in each page")
-    # @token_required
-    def get(self):
+    @ns.doc(security= "bearer")
+    @token_required
+    def get(self, decoded_token):
         """List all users"""
         page = request.args.get('page', default=1, type=int)
         count = request.args.get('count', default=50, type=int)
         return get_all_users(page, count)
 
+@ns.route("/user/login")
+class UserLogin(Resource):
+    @ns.expect(_login, validate=True)
+    def post(self):
+        """User Authentication"""
+        return user_auth(ns.payload)

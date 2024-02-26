@@ -49,3 +49,16 @@ def user_auth(data):
     except Exception as e:
         log.error(f"Login Error: {str(e)}")
         return error_handler(e)
+    
+def user_auth(data):
+    try:
+        auth = user_model.user_auth(data)
+        response_object = {
+            "status": "success",
+            "message": "Login Success",
+            "token": auth,
+        }
+        return response_object, 201
+    except Exception as e:
+        log.error(f"Login Error: {str(e)}")
+        return error_handler(e)
