@@ -30,7 +30,7 @@ SQLALCHEMY_TRACK_MODIFICATIONS = False
 redis_cache_config = {"CACHE_TYPE": "simple", "CACHE_REDIS_URL": None}
 
 REDIS_HOST = env.str("REDIS_HOST")
-REDIS_PORT = env.int("REDIS_PORT")
+REDIS_PORT = env.str("REDIS_PORT")
 REDIS_PASSWORD = env.str("REDIS_PASSWORD")
 
 if REDIS_HOST and REDIS_PORT:
