@@ -78,8 +78,7 @@ class User(db.Model):
         except Exception as e:
             raise e
 
-        # please never return this
-
+    # please never return this
     def serialize_entire_data(self):
         return {
             "id": self.id,
