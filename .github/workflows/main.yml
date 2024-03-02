@@ -32,7 +32,7 @@ jobs:
           key: ${{ secrets.SERVER_KEY }}
           script: |
             sudo chmod 777 /var/run/docker.sock
-            cd /home/coa/hidden-gem-backend
+            cd /home/aqzaqz/coba/flask_rest_boilerplate
             git pull origin main
             docker stop hidden_gem_container
             docker rm  hidden_gem_container
