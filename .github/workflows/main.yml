@@ -53,6 +53,6 @@ jobs:
             -e REDIS_PORT=6379 \
             -e REDIS_PASSWORD= \
             --name flask_bo_container \
-            flask_bo
+            flask_bo_images
 
 
