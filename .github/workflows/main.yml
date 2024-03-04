@@ -9,20 +9,6 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    env:
-      DB_HOST: ${{ secrets.DB_HOST }}
-      DB_USER: ${{ secrets.DB_USER }}
-      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-      TEST_DB_USER: ${{ secrets.TEST_DB_USER }}
-      TEST_DB_PASSWORD: ${{ secrets.TEST_DB_PASSWORD }}
-      DB_PORT: ${{ secrets.DB_PORT }}
-      DB_NAME: ${{ secrets.DB_NAME }}
-      SECRET_KEY: ${{ secrets.SECRET_KEY }}
-      DEBUG: ${{ secrets.DEBUG }}
-
-      REDIS_HOST: ${{ secrets.REDIS_HOST }}
-      REDIS_PORT: ${{ secrets.REDIS_PORT }}
-      REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
     steps:
       - name: Connect to server using SSH
         uses: appleboy/ssh-action@master
@@ -40,19 +26,6 @@ jobs:
             docker build -t flask_bo_images:latest .
             docker run -d \
             -p 5000:5000 \
-            -e DB_HOST=host.docker.internal \
-            -e DB_USER=root \
-            -e DB_PASSWORD=Elysian123! \
-            -e DEBUG=False \
-            -e DB_PORT=3306 \
-            -e DB_NAME=flask_bo \
-            -e TEST_DB=flask_bo_test \
-            -e SECRET_KEY=H1M1T5U \
-            -e FLASK_DEBUG=True \
-            -e REDIS_HOST=host.docker.internal \
-            -e REDIS_PORT=6379 \
-            -e REDIS_PASSWORD= \
+            --env-file .env \  # Add this line to read environment variables from .env file
             --name flask_bo_container \
             flask_bo_images
-
-
