@@ -9,6 +9,7 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+
     steps:
       - name: Connect to server using SSH
         uses: appleboy/ssh-action@master
@@ -26,6 +27,17 @@ jobs:
             docker build -t flask_bo_images:latest .
             docker run -d \
             -p 5000:5000 \
-            --env-file .env \  # Add this line to read environment variables from .env file
+            -e DB_HOST=${{ secrets.SERVER_HOST }} \
+            -e DB_USER=${{ secrets.DB_USER }} \
+            -e DB_PASSWORD=${{ secrets.DB_PASSWORD }} \
+            -e DEBUG=${{ secrets.DEBUG }} \
+            -e DB_PORT=${{ secrets.DB_PORT }} \
+            -e DB_NAME=${{ secrets.DB_NAME }} \
+            -e TEST_DB=${{ secrets.TEST_DB }} \
+            -e SECRET_KEY=${{ secrets.SECRET_KEY }} \
+            -e FLASK_DEBUG=${{ secrets.FLASK_DEBUG }} \
+            -e REDIS_HOST=${{ secrets.REDIS_HOST }} \
+            -e REDIS_PORT=${{ secrets.REDIS_PORT }}\
+            -e REDIS_PASSWORD= ${{ secrets.REDIS_PASSWORD }} \
             --name flask_bo_container \
             flask_bo_images
