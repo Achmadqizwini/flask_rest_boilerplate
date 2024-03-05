@@ -45,17 +45,17 @@ jobs:
             docker build -t flask_bo_images:latest .
             docker run -d \
             -p 5050:5050 \
-            -e DB_HOST=${ SERVER_HOST } \
-            -e DB_USER=${ DB_USER } \
-            -e DB_PASSWORD=${ DB_PASSWORD } \
-            -e DEBUG=${ DEBUG } \
-            -e DB_PORT=${ DB_PORT } \
-            -e DB_NAME=${ DB_NAME } \
-            -e TEST_DB=${ TEST_DB } \
-            -e SECRET_KEY=${ SECRET_KEY } \
-            -e FLASK_DEBUG=${ FLASK_DEBUG } \
-            -e REDIS_HOST=${ SERVER_HOST } \
-            -e REDIS_PORT=${ REDIS_PORT }\
-            -e REDIS_PASSWORD= ${ REDIS_PASSWORD } \
+            -e DB_HOST=${{ secrets.SERVER_HOST }} \
+            -e DB_USER=${{ secrets.DB_USER }} \
+            -e DB_PASSWORD=${{ secrets.DB_PASSWORD }} \
+            -e DEBUG=${{ secrets.DEBUG }}} \
+            -e DB_PORT=${{ secrets.DB_PORT }} \
+            -e DB_NAME=${{ secrets.DB_NAME }} \
+            -e TEST_DB=${{ secrets.TEST_DB }} \
+            -e SECRET_KEY=${{ secrets.SECRET_KEY }} \
+            -e FLASK_DEBUG=${{ secrets.FLASK_DEBUG }} \
+            -e REDIS_HOST=${{ secrets.REDIS_HOST }} \
+            -e REDIS_PORT=${{ secrets.REDIS_PORT }}\
+            -e REDIS_PASSWORD= ${{ secrets.REDIS_PASSWORD }} \
             --name flask_bo_container \
             flask_bo_images
