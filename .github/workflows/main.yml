@@ -10,24 +10,6 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
 
-    env:
-      DB_HOST: ${{ secrets.SERVER_HOST }}
-      DB_USER: ${{ secrets.DB_USER }}
-      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-      DEBUG: ${{ secrets.DEBUG }}
-      DB_PORT: ${{ secrets.DB_PORT }}
-      DB_NAME: ${{ secrets.DB_NAME }}
-      TEST_DB: ${{ secrets.TEST_DB }}
-      SECRET_KEY: ${{ secrets.SECRET_KEY }}
-      FLASK_DEBUG: ${{ secrets.FLASK_DEBUG }}
-      REDIS_HOST: ${{ secrets.SERVER_HOST }}
-      REDIS_PORT: ${{ secrets.REDIS_PORT }}
-      REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
-      SERVER_HOST: ${{ secrets.SERVER_HOST }}
-      SERVER_USERNAME: ${{ secrets.SERVER_USERNAME }}
-      SERVER_KEY: ${{ secrets.SERVER_KEY }}
-
-
     steps:
       - name: Connect to server using SSH
         uses: appleboy/ssh-action@master
@@ -48,13 +30,13 @@ jobs:
             -e DB_HOST=${{ secrets.SERVER_HOST }} \
             -e DB_USER=${{ secrets.DB_USER }} \
             -e DB_PASSWORD=${{ secrets.DB_PASSWORD }} \
-            -e DEBUG=${{ secrets.DEBUG }}} \
+            -e DEBUG=${{ secrets.DEBUG }} \
             -e DB_PORT=${{ secrets.DB_PORT }} \
             -e DB_NAME=${{ secrets.DB_NAME }} \
             -e TEST_DB=${{ secrets.TEST_DB }} \
             -e SECRET_KEY=${{ secrets.SECRET_KEY }} \
             -e FLASK_DEBUG=${{ secrets.FLASK_DEBUG }} \
-            -e REDIS_HOST=${{ secrets.REDIS_HOST }} \
+            -e REDIS_HOST=${{ secrets.SERVER_HOST }} \
             -e REDIS_PORT=${{ secrets.REDIS_PORT }}\
             -e REDIS_PASSWORD= ${{ secrets.REDIS_PASSWORD }} \
             --name flask_bo_container \
