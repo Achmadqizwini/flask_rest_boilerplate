@@ -10,7 +10,7 @@ RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
 COPY . /app
 
 # Make port 5000 available to the world outside this container 
-EXPOSE 5000
+EXPOSE 5050
 ENV FLASK_RUN_HOST=0.0.0.0
 # Run the app
 CMD ["flask", "run"]
