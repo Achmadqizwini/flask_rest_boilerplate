@@ -21,7 +21,7 @@ jobs:
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
       FLASK_DEBUG: ${{ secrets.FLASK_DEBUG }}
       REDIS_HOST: ${{ secrets.SERVER_HOST }}
-      REDIS_PORT: ${{ secrets.REDIS_PORT }
+      REDIS_PORT: ${{ secrets.REDIS_PORT }}
       REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
       SERVER_HOST: ${{ secrets.SERVER_HOST }}
       SERVER_USERNAME: ${{ secrets.SERVER_USERNAME }}
