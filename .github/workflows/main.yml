@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       DB_HOST: ${{ secrets.SERVER_HOST }}
-      DB_USER: ${{ secrets.DB_USER }}
+      DB_USER: "tetetee"
       DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
       DEBUG: ${{ secrets.DEBUG }}
       DB_PORT: ${{ secrets.DB_PORT }}
@@ -22,7 +22,7 @@ jobs:
       REDIS_HOST: ${{ secrets.SERVER_HOST }}
       REDIS_PORT: ${{ secrets.REDIS_PORT }}
       REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
-      SERVER_HOST: ${{ secrets.SERVER_HOST }}
+      SERVER_HOST: testtest
       SERVER_USERNAME: ${{ secrets.SERVER_USERNAME }}
       SERVER_KEY: ${{ secrets.SERVER_KEY }}
 
