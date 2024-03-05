@@ -10,6 +10,25 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
 
+    env:
+      DB_HOST: ${{ secrets.DB_HOST }}
+      DB_USER: ${{ secrets.DB_USER }}
+      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      TEST_DB_USER: ${{ secrets.TEST_DB_USER }}
+      TEST_DB_PASSWORD: ${{ secrets.TEST_DB_PASSWORD }}
+      DB_PORT: ${{ secrets.DB_PORT }}
+      DB_NAME: ${{ secrets.DB_NAME }}
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      DEBUG: ${{ secrets.DEBUG }}
+
+      REDIS_HOST: ${{ secrets.REDIS_HOST }}
+      REDIS_PORT: ${{ secrets.REDIS_PORT }}
+      REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
+
+      SERVER_HOST: ${{ secrets.SERVER_HOST }}
+      SERVER_USERNAME: ${{ secrets.SERVER_USERNAME }}
+      SERVER_KEY: ${{ secrets.SERVER_KEY }}
+
     steps:
       - name: Connect to server using SSH
         uses: appleboy/ssh-action@master
@@ -21,23 +40,23 @@ jobs:
             sudo chmod 777 /var/run/docker.sock
             cd /home/aqzaqz/coba/flask_rest_boilerplate
             git pull origin main
-            docker stop flask_bo_container
-            docker rm  flask_bo_container
-            docker rmi flask_bo_images:latest
+            docker stop flask_bo_container || true
+            docker rm  flask_bo_container || true
+            docker rmi flask_bo_images:latest || true
             docker build -t flask_bo_images:latest .
             docker run -d \
             -p 5050:5050 \
-            -e DB_HOST=${{ secrets.SERVER_HOST }} \
-            -e DB_USER=${{ secrets.DB_USER }} \
-            -e DB_PASSWORD=${{ secrets.DB_PASSWORD }} \
-            -e DEBUG=${{ secrets.DEBUG }} \
-            -e DB_PORT=${{ secrets.DB_PORT }} \
-            -e DB_NAME=${{ secrets.DB_NAME }} \
-            -e TEST_DB=${{ secrets.TEST_DB }} \
-            -e SECRET_KEY=${{ secrets.SECRET_KEY }} \
-            -e FLASK_DEBUG=${{ secrets.FLASK_DEBUG }} \
-            -e REDIS_HOST=${{ secrets.REDIS_HOST }} \
-            -e REDIS_PORT=${{ secrets.REDIS_PORT }}\
-            -e REDIS_PASSWORD= ${{ secrets.REDIS_PASSWORD }} \
+            -e DB_HOST=${DB_HOST} \
+            -e DB_USER=${DB_USER} \
+            -e DB_PASSWORD=${DB_PASSWORD} \
+            -e DEBUG=${DEBUG} \
+            -e DB_PORT=${DB_PORT} \
+            -e DB_NAME=${DB_NAME} \
+            -e TEST_DB=${TEST_DB} \
+            -e SECRET_KEY=${SECRET_KEY} \
+            -e FLASK_DEBUG=${FLASK_DEBUG} \
+            -e REDIS_HOST=${REDIS_HOST} \
+            -e REDIS_PORT=${REDIS_PORT} \
+            -e REDIS_PASSWORD=${REDIS_PASSWORD} \
             --name flask_bo_container \
             flask_bo_images
