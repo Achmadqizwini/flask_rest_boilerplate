@@ -1,16 +1,25 @@
-FROM python:3.12.2-alpine3.19
+FROM python:3.11.8-alpine3.19
 
+# set working directory /app
 WORKDIR /app
 
+# Copy requirements.txt from the host to /app/requirements.txt in the container
 COPY ./requirements.txt /app/requirements.txt
 
-# RUN apk add uvicorn
-RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
+# Install Python dependencies listed in requirements.txt
+RUN pip install -r /app/requirements.txt
 
+# Copy the current directory from the host to /app in the container
 COPY . /app
 
-# Make port 5000 available to the world outside this container 
-EXPOSE 5050
+# Expose port 5000 to allow external access to the Flask application
+EXPOSE 5000
+
+# Set the FLASK_RUN_HOST environment variable to 0.0.0.0 to allow external access
 ENV FLASK_RUN_HOST=0.0.0.0
-# Run the app
-CMD ["flask", "run"]
+
+# Make the entrypoint script executable
+RUN chmod +x entrypoint.sh
+
+# Set the entrypoint script as the entrypoint for the container
+ENTRYPOINT ["./entrypoint.sh"]
