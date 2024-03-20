@@ -1,0 +1,125 @@
+# Hidden Gem
+
+[![Build Status](https://travis-ci.org/your-username/your-repo.svg?branch=master)](https://travis-ci.org/your-username/your-repo)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+## Description
+
+This backend application REST API boilerplate using flask
+
+## Features
+
+- See user
+- Create user
+
+## Technologies Used
+
+- Flask
+- Python
+
+## Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/Achmadqizwini/flask_rest_boilerplate
+   ```
+
+2. Create virtual environment:
+
+   ```windows
+   python -m venv venv
+   ```
+
+   ```linux
+   python3 -m venv venv
+   ```
+
+3. Activate virtual environment:
+
+   ```windows
+   .\venv\Scripts\activate
+   ```
+
+   ```bash
+   source venv/bin/activate
+   ```
+
+4. Install dependencies:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+5. Copy .env-template file and rename it to .env, contact your administrator to get the credentials
+
+6. Run the application:
+
+   ```bash
+   flask run
+   ```
+
+7. Run the tests:
+
+   ```bash
+   flask test
+   ```
+
+   or
+
+   ```bash
+   pytest
+   ```
+
+   Run a specific test file:
+
+   ```bash
+   pytest -k path-to-test-file
+   ```
+
+   Run a specific test file while seeing the print statement:
+
+   ```bash
+   pytest -k path-to-test-file -s
+   ```
+
+8. DB related:
+
+   ```bash
+   flask db init
+   flask db migrate
+   flask db upgrade
+   ```
+
+9. Format the python file:
+
+   ```bash
+   black path-to-file
+   ```
+
+   or in a directory consisting the files:
+
+   ```bash
+   black .
+   ```
+
+## Configuration
+
+Explain any configuration settings or environment variables that need to be set.
+
+## Usage
+
+Provide instructions on how to use your application. Include any examples or screenshots that may be helpful.
+
+## Contributing
+
+If you'd like to contribute to the project, please follow these guidelines:
+
+1. Fork the repository.
+2. Create a new branch.
+3. Make your changes and commit them.
+4. Submit a pull request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
